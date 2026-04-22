@@ -2,7 +2,7 @@ export default function Constellation() {
   return (
     <svg
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full"
+      className="constellation-breathe absolute inset-0 w-full h-full"
       viewBox="0 0 1600 900"
       preserveAspectRatio="xMidYMid slice"
     >

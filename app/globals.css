@@ -66,6 +66,21 @@
   50% { opacity: 1; }
 }
 
+@keyframes breathe {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.008);
+  }
+}
+
+.constellation-breathe {
+  animation: breathe 7s ease-in-out infinite;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
