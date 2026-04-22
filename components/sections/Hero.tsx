@@ -4,7 +4,7 @@ import HeroStats from './HeroStats'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden flex items-center py-10 md:py-14 md:pb-20 md:min-h-[calc(100svh-104px)]">
+    <section className="relative overflow-hidden flex items-center py-8 md:py-10 md:pb-14 md:min-h-[calc(100svh-104px)]">
       {/* Constellation background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <Constellation />
@@ -46,7 +46,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-[2] w-full mx-auto max-w-[1800px] px-5 md:px-8">
-        <div className="max-w-[780px]">
+        <div className="max-w-[860px]">
           <Reveal className="flex items-center gap-[14px] font-sans text-[11px] tracking-[.28em] uppercase text-gold mb-6">
             <span aria-hidden="true" className="inline-block w-10 h-px bg-gold" />
             Cabinet de généalogie successorale · Paris
@@ -59,7 +59,7 @@ export default function Hero() {
           >
             <span
               className="block"
-              style={{ fontSize: 'clamp(44px, 6.5vw, 104px)', lineHeight: '.95' }}
+              style={{ fontSize: 'clamp(40px, 5.2vw, 88px)', lineHeight: '.95' }}
             >
               Ce que votre famille
               <br />a{' '}
