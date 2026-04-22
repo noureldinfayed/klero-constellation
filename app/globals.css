@@ -1,39 +1,33 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  :root {
+    --navy-0: #07101d;
+    --navy-1: #0c1a2e;
+    --navy-2: #132742;
+    --navy-3: #1d3558;
+    --gold: #c9a961;
+    --gold-soft: #e8d4a0;
+    --bone: #efe7d3;
+    --rule: rgba(201, 169, 97, 0.2);
+    --rule-strong: rgba(201, 169, 97, 0.4);
+    --ink-muted: #8ea0bd;
+  }
 
-:root {
-  --navy-0: #07101d;
-  --navy-1: #0c1a2e;
-  --navy-2: #132742;
-  --navy-3: #1d3558;
-  --gold: #c9a961;
-  --gold-soft: #e8d4a0;
-  --bone: #efe7d3;
-  --rule: rgba(201, 169, 97, 0.2);
-  --rule-strong: rgba(201, 169, 97, 0.4);
-  --ink-muted: #8ea0bd;
-}
+  html,
+  body {
+    background: var(--navy-0);
+    color: var(--bone);
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
 
-html,
-body {
-  background: var(--navy-0);
-  color: var(--bone);
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-}
-
-html {
-  scroll-behavior: smooth;
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 .bg-layer {

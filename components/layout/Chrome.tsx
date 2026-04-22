@@ -29,12 +29,18 @@ export default function Chrome() {
             <span className="sr-only">Kléro Généalogie successorale</span>
           </a>
 
-          <nav className="hidden md:flex gap-10 items-center">
+          <nav className="hidden md:flex gap-8 lg:gap-10 items-center">
             <a
               href="#process"
               className="text-bone/85 text-[13px] tracking-[.04em] transition-colors hover:text-gold hover:opacity-100"
             >
               La méthode
+            </a>
+            <a
+              href="#why"
+              className="text-bone/85 text-[13px] tracking-[.04em] transition-colors hover:text-gold hover:opacity-100"
+            >
+              Pourquoi Kléro
             </a>
             <a
               href="#cases"
@@ -47,12 +53,6 @@ export default function Chrome() {
               className="text-bone/85 text-[13px] tracking-[.04em] transition-colors hover:text-gold hover:opacity-100"
             >
               Éligibilité
-            </a>
-            <a
-              href="#faq"
-              className="text-bone/85 text-[13px] tracking-[.04em] transition-colors hover:text-gold hover:opacity-100"
-            >
-              FAQ
             </a>
             <button
               className="bg-gold text-navy-0 px-[22px] py-[11px] font-sans text-[12px] tracking-[.15em] uppercase font-medium cursor-pointer transition-colors hover:bg-gold-soft"
@@ -93,6 +93,13 @@ export default function Chrome() {
               La méthode
             </a>
             <a
+              href="#why"
+              onClick={() => setOpen(false)}
+              className="text-bone/85 text-[13px] tracking-[.04em] hover:text-gold"
+            >
+              Pourquoi Kléro
+            </a>
+            <a
               href="#cases"
               onClick={() => setOpen(false)}
               className="text-bone/85 text-[13px] tracking-[.04em] hover:text-gold"
@@ -105,13 +112,6 @@ export default function Chrome() {
               className="text-bone/85 text-[13px] tracking-[.04em] hover:text-gold"
             >
               Éligibilité
-            </a>
-            <a
-              href="#faq"
-              onClick={() => setOpen(false)}
-              className="text-bone/85 text-[13px] tracking-[.04em] hover:text-gold"
-            >
-              FAQ
             </a>
             <button
               className="bg-gold text-navy-0 px-[22px] py-[11px] font-sans text-[12px] tracking-[.15em] uppercase font-medium cursor-pointer self-start"

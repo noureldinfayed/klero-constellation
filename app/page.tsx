@@ -2,6 +2,7 @@ import Chrome from '@/components/layout/Chrome'
 import SiteFooter from '@/components/layout/SiteFooter'
 import Hero from '@/components/sections/Hero'
 import Method from '@/components/sections/Method'
+import WhyUs from '@/components/sections/WhyUs'
 import Cases from '@/components/sections/Cases'
 import EligibilityQuiz from '@/components/sections/EligibilityQuiz'
 import FooterCta from '@/components/sections/FooterCta'
@@ -13,6 +14,7 @@ export default function Page() {
       <main className="relative z-[2]">
         <Hero />
         <Method />
+        <WhyUs />
         <Cases />
         <EligibilityQuiz />
         <FooterCta />
