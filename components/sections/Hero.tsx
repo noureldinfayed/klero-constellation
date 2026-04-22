@@ -4,7 +4,7 @@ import HeroStats from './HeroStats'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden flex items-center py-12 md:py-20 md:pb-[120px] md:min-h-[calc(100vh-76px)]">
+    <section className="relative overflow-hidden flex items-center py-12 md:py-20 md:pb-[120px] md:min-h-[calc(100vh-104px)]">
       {/* Constellation background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <Constellation />
