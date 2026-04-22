@@ -45,7 +45,7 @@ export default function Hero() {
         Vous êtes ici
       </div>
 
-      <div className="relative z-[2] w-full mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="relative z-[2] w-full mx-auto max-w-[1800px] px-5 md:px-8">
         <div className="max-w-[780px]">
           <Reveal className="flex items-center gap-[14px] font-sans text-[11px] tracking-[.28em] uppercase text-gold mb-10">
             <span aria-hidden="true" className="inline-block w-10 h-px bg-gold" />

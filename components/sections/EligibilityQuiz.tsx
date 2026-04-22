@@ -119,7 +119,7 @@ export default function EligibilityQuiz() {
         background: 'radial-gradient(ellipse at center, rgba(29,53,88,.4), transparent 60%)',
       }}
     >
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8">
         <Reveal
           className="elig-card relative max-w-[760px] mx-auto p-6 md:p-[56px_56px_48px] border"
           delay={0}

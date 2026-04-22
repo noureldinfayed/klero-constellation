@@ -31,7 +31,7 @@ const VALUES: Value[] = [
 export default function WhyUs() {
   return (
     <section id="why" className="py-20 md:py-[140px] relative">
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8">
         <div className="max-w-[920px] mb-12 md:mb-[72px]">
           <Reveal className="flex items-center gap-[14px] text-[11px] tracking-[.28em] uppercase text-gold mb-6">
             <span aria-hidden="true" className="w-8 h-px bg-gold" />— Pourquoi choisir Kléro

@@ -79,7 +79,7 @@ const COUNTERS = [
 export default function Cases() {
   return (
     <section id="cases" className="py-20 md:pt-10 md:pb-[140px] relative">
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-12 md:items-end mb-12 md:mb-[72px]">
           <div>
             <Reveal className="flex items-center gap-[14px] text-[11px] tracking-[.28em] uppercase text-gold mb-6">

@@ -15,7 +15,7 @@ export default function Chrome() {
         WebkitBackdropFilter: 'blur(16px) saturate(140%)',
       }}
     >
-      <div className="container mx-auto max-w-[1320px] px-5 md:px-8 relative">
+      <div className="container mx-auto max-w-[1800px] px-5 md:px-8 relative">
         <div className="flex items-center justify-between h-[76px] relative z-[2]">
           <a href="#" className="flex items-center gap-3 no-underline" aria-label="Kléro Généalogie — accueil">
             <Image

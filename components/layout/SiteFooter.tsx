@@ -1,7 +1,7 @@
 export default function SiteFooter() {
   return (
     <footer className="border-t border-rule py-10 text-[11px] text-ink-muted tracking-[.15em] uppercase">
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
         <div className="flex flex-wrap gap-x-4 gap-y-2">
           <span>
             © MMXXVI · Kléro Généalogie · 295 Rue Saint-Jacques, Paris V<sup>e</sup>

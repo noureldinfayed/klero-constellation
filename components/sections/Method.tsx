@@ -44,7 +44,7 @@ const STEPS: Step[] = [
 export default function Method() {
   return (
     <section id="process" className="py-20 md:py-[140px] relative">
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8">
         <div className="max-w-[920px] mb-12 md:mb-[88px]">
           <Reveal className="flex items-center gap-[14px] text-[11px] tracking-[.28em] uppercase text-gold mb-6">
             <span aria-hidden="true" className="w-8 h-px bg-gold" />— Notre méthode · trois temps

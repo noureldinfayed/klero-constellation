@@ -8,7 +8,7 @@ export default function FooterCta() {
         aria-hidden="true"
         className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-[60px] bg-gold"
       />
-      <div className="mx-auto max-w-[1320px] px-5 md:px-8">
+      <div className="mx-auto max-w-[1800px] px-5 md:px-8">
         <Reveal className="text-[10px] tracking-[.28em] uppercase text-gold mb-7 mt-[88px]">
           — Cabinet Kléro · Depuis 1984
         </Reveal>
