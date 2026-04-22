@@ -16,7 +16,7 @@ export default function Chrome() {
       }}
     >
       <div className="container mx-auto max-w-[1800px] px-5 md:px-8 relative">
-        <div className="flex items-center justify-between h-[76px] relative z-[2]">
+        <div className="flex items-center justify-between h-[96px] md:h-[112px] relative z-[2]">
           <a href="#" className="flex items-center gap-3 no-underline" aria-label="Kléro Généalogie — accueil">
             <Image
               src="/images/klero-logo.png"
@@ -24,8 +24,7 @@ export default function Chrome() {
               width={1536}
               height={1024}
               priority
-              className="h-[52px] w-[180px] md:w-[220px]"
-              style={{ objectFit: 'fill' }}
+              className="h-[72px] md:h-[84px] w-auto"
             />
             <span className="sr-only">Kléro Généalogie successorale</span>
           </a>
