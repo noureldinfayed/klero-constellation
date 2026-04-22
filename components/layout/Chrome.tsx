@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import Logo from './Logo'
 
 export default function Chrome() {
   const [open, setOpen] = useState(false)
@@ -10,17 +10,8 @@ export default function Chrome() {
     <header className="sticky top-0 z-50 border-b border-rule chrome-bar">
       <div className="container mx-auto max-w-[1800px] px-5 md:px-8 relative">
         <div className="flex items-center justify-between h-[64px] md:h-[72px] relative z-[2]">
-          <a href="#" className="flex items-center gap-3 no-underline" aria-label="Kléro Généalogie — accueil">
-            <Image
-              src="/images/klero-logo.png"
-              alt="Kléro Généalogie"
-              width={1022}
-              height={313}
-              priority
-              sizes="(min-width: 768px) 184px, 164px"
-              className="h-[50px] md:h-[56px] w-auto"
-            />
-            <span className="sr-only">Kléro Généalogie successorale</span>
+          <a href="#" className="flex items-center no-underline text-bone" aria-label="Kléro Généalogie — accueil">
+            <Logo className="h-[50px] md:h-[56px] w-auto" />
           </a>
 
           <nav className="hidden md:flex gap-8 lg:gap-10 items-center">
