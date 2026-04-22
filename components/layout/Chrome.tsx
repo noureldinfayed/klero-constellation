@@ -7,14 +7,7 @@ export default function Chrome() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header
-      className="sticky top-0 z-50 border-b border-rule"
-      style={{
-        background: 'rgba(7,16,29,.75)',
-        backdropFilter: 'blur(16px) saturate(140%)',
-        WebkitBackdropFilter: 'blur(16px) saturate(140%)',
-      }}
-    >
+    <header className="sticky top-0 z-50 border-b border-rule chrome-bar">
       <div className="container mx-auto max-w-[1800px] px-5 md:px-8 relative">
         <div className="flex items-center justify-between h-[64px] md:h-[72px] relative z-[2]">
           <a href="#" className="flex items-center gap-3 no-underline" aria-label="Kléro Généalogie — accueil">
