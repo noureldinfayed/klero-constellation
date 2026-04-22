@@ -118,7 +118,7 @@ export default function Cases() {
             <Reveal
               key={c.n}
               as="article"
-              className="case-row relative group grid md:grid-cols-[80px_1.3fr_1fr_160px] grid-cols-[50px_1fr] gap-4 md:gap-12 py-7 md:py-10 border-b border-rule items-center cursor-pointer transition-[background] duration-300 hover:bg-[linear-gradient(90deg,rgba(29,53,88,.25),transparent_70%)]"
+              className="case-row relative group grid grid-cols-1 md:grid-cols-[80px_1.3fr_1fr_160px] gap-3 md:gap-12 py-7 md:py-10 border-b border-rule items-start md:items-center cursor-pointer transition-[background] duration-300 hover:bg-[linear-gradient(90deg,rgba(29,53,88,.25),transparent_70%)]"
             >
               {/* left bar */}
               <span
@@ -126,32 +126,32 @@ export default function Cases() {
                 className="absolute left-[-24px] top-0 bottom-0 w-[2px] bg-gold origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-[400ms]"
               />
 
-              <div className="font-serif italic text-[48px] text-gold font-normal leading-none tracking-[-.02em]">
+              <div className="font-serif italic text-[28px] md:text-[48px] text-gold font-normal leading-none tracking-[-.02em]">
                 {c.n}
               </div>
 
-              <div className="md:col-auto col-start-2">
+              <div>
                 <div className="text-[10px] tracking-[.22em] uppercase text-ink-muted mb-3">
                   {c.loc}
                 </div>
-                <div className="font-display italic leading-[1.25] text-bone mb-3" style={{ fontSize: 'clamp(22px,2vw,30px)' }}>
+                <div className="font-display italic leading-[1.25] text-bone mb-3" style={{ fontSize: 'clamp(20px,2vw,30px)' }}>
                   {c.quote}
                 </div>
                 <div className="text-[12px] text-ink-muted tracking-[.06em]">{c.by}</div>
               </div>
 
-              <div className="md:col-auto col-start-2 text-[13.5px] leading-[1.65] text-ink-muted">
+              <div className="text-[13.5px] leading-[1.65] text-ink-muted">
                 {c.story}
               </div>
 
-              <div className="md:text-right md:col-auto col-start-1 col-span-2 md:border-0 md:pt-0 border-t border-dashed border-rule pt-4 mt-3 md:mt-0 flex md:block items-baseline gap-4">
-                <div className="text-[9px] tracking-[.24em] uppercase text-ink-muted md:mb-[6px] mb-0">
+              <div className="md:text-right border-t border-dashed border-rule md:border-0 pt-4 md:pt-0 mt-2 md:mt-0 flex md:block items-baseline justify-between md:justify-end gap-4">
+                <div className="text-[9px] tracking-[.24em] uppercase text-ink-muted md:mb-[6px]">
                   Restitué
                 </div>
-                <div className="font-serif italic text-[32px] md:text-[40px] text-gold font-normal leading-none tracking-[-.02em]">
+                <div className="font-serif italic text-[30px] md:text-[40px] text-gold font-normal leading-none tracking-[-.02em]">
                   {c.amount}
                 </div>
-                <div className="text-[10px] tracking-[.18em] uppercase text-ink-muted md:mt-2 md:ml-0 ml-auto mt-0">
+                <div className="text-[10px] tracking-[.18em] uppercase text-ink-muted md:mt-2">
                   {c.sub}
                 </div>
               </div>
