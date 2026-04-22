@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Instrument_Serif, Manrope } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -8,17 +7,17 @@ const playfair = Playfair_Display({
   weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
-  display: 'swap',
+  display: 'optional',
   preload: true,
 })
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
   weight: ['400'],
-  style: ['normal', 'italic'],
+  style: ['italic'],
   variable: '--font-instrument',
-  display: 'swap',
-  preload: true,
+  display: 'optional',
+  preload: false,
 })
 
 const manrope = Manrope({
@@ -64,7 +63,6 @@ export default function RootLayout({
       <body className="min-h-full bg-navy-0 text-bone font-sans">
         <div className="bg-layer" aria-hidden="true" />
         {children}
-        <Analytics />
       </body>
     </html>
   )
