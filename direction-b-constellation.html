@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klero — La Constellation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-0: #07101d;
+    --navy-1: #0c1a2e;
+    --navy-2: #132742;
+    --navy-3: #1d3558;
+    --gold: #c9a961;
+    --gold-soft: #e8d4a0;
+    --bone: #efe7d3;
+    --rule: rgba(201,169,97,.2);
+    --rule-strong: rgba(201,169,97,.4);
+    --ink-muted: #8ea0bd;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--navy-0);color:var(--bone);
+    font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Playfair Display', Georgia, serif}
+  .inst{font-family:'Instrument Serif', Georgia, serif}
+  .container{max-width:1320px;margin:0 auto;padding:0 32px;position:relative}
+
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(29,53,88,.8), transparent 50%),
+      radial-gradient(ellipse at 85% 80%, rgba(201,169,97,.08), transparent 45%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: auto, auto, 200px;
+  }
+
+  /* ───── Chrome ───── */
+  .chrome{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,16,29,.75);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom:1px solid var(--rule);
+  }
+  .chrome-inner{display:flex;align-items:center;justify-content:space-between;height:76px;position:relative;z-index:2}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{
+    width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;
+    display:grid;place-items:center;color:var(--gold);font-family:'Playfair Display',serif;
+    font-size:18px;font-weight:500;font-style:italic;position:relative;
+  }
+  .brand-mark::before{
+    content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(201,169,97,.3);
+  }
+  .brand-txt{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.02em}
+  .brand-txt small{display:block;font-family:'Manrope',sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-muted);margin-top:2px}
+  .nav{display:flex;gap:40px;align-items:center}
+  .nav a{color:var(--bone);text-decoration:none;font-size:13px;letter-spacing:.04em;opacity:.85;transition:color .2s,opacity .2s}
+  .nav a:hover{color:var(--gold);opacity:1}
+  .cta{
+    background:var(--gold);color:var(--navy-0);
+    padding:11px 22px;border:none;font-family:'Manrope',sans-serif;
+    font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
+    cursor:pointer;transition:all .2s;
+  }
+  .cta:hover{background:var(--gold-soft)}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--gold)}
+
+  /* ───── Hero ───── */
+  .hero{
+    position:relative;padding:80px 0 120px;overflow:hidden;
+    min-height: calc(100vh - 76px);
+    display:flex;align-items:center;
+  }
+  .hero-bg{
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+  }
+  .constellation{width:100%;height:100%;position:absolute;inset:0}
+
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-meta{
+    font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:40px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .hero-meta::before{content:"";width:40px;height:1px;background:var(--gold)}
+  .hero-title{
+    font-family:'Playfair Display',serif;font-weight:400;
+    font-size:clamp(56px, 9vw, 140px);line-height:.95;
+    letter-spacing:-.025em;color:var(--bone);margin-bottom:40px;
+  }
+  .hero-title em{font-style:italic;color:var(--gold);font-weight:400}
+  .hero-title .accent{position:relative;display:inline-block}
+  .hero-title .accent::after{
+    content:"";position:absolute;bottom:.15em;left:-4px;right:-4px;height:6px;
+    background:radial-gradient(ellipse, rgba(201,169,97,.35), transparent 70%);z-index:-1;
+  }
+  .hero-lede{
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:clamp(20px,2vw,28px);line-height:1.45;color:var(--gold-soft);
+    max-width:540px;margin-bottom:48px;
+  }
+  .hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--gold);color:var(--navy-0);padding:16px 32px;border:none;
+    font-family:'Manrope',sans-serif;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;font-weight:600;cursor:pointer;transition:all .25s;
+    position:relative;
+  }
+  .btn-primary:hover{background:var(--gold-soft);transform:translateY(-1px);box-shadow:0 10px 40px rgba(201,169,97,.25)}
+  .btn-ghost{
+    background:transparent;color:var(--bone);padding:15px 30px;
+    border:1px solid rgba(239,231,211,.3);cursor:pointer;
+    font-family:'Manrope',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    transition:all .2s;
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* stat panel */
+  .hero-stats{
+    position:absolute;right:32px;bottom:0;width:340px;
+    padding:28px 28px 0;border-left:1px solid var(--rule-strong);
+    z-index:2;
+  }
+  .stat-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .stat-big{font-family:'Playfair Display',serif;font-size:120px;font-weight:400;line-height:.9;letter-spacing:-.04em;color:var(--bone);display:flex;align-items:baseline}
+  .stat-big .pct{color:var(--gold);font-size:48px;font-weight:400;margin-left:4px;font-style:italic}
+  .stat-sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:var(--gold-soft);margin-top:14px;line-height:1.4;max-width:280px}
+  .stat-ticks{margin-top:28px;display:flex;gap:14px;align-items:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted)}
+
+  /* floating markers */
+  .marker{position:absolute;color:var(--gold);font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;opacity:.6;z-index:1}
+  .marker::before{content:"";position:absolute;left:-24px;top:10px;width:18px;height:1px;background:var(--gold)}
+
+  /* ───── Section ───── */
+  .section{padding:140px 0;position:relative}
+  .section-head{max-width:920px;margin-bottom:88px}
+  .section-kicker{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  }
+  .section-kicker::before{content:"";width:32px;height:1px;background:var(--gold)}
+  .section-title{
+    font-family:'Playfair Display',serif;font-weight:400;
+    font-size:clamp(44px,5.5vw,80px);line-height:1.02;letter-spacing:-.02em;
+    margin-bottom:24px;
+  }
+  .section-title em{font-style:italic;color:var(--gold)}
+
+  /* ───── Steps ───── */
+  .steps-wrap{position:relative}
+  .steps-line{
+    position:absolute;top:60px;left:5%;right:5%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--rule-strong) 10%,var(--rule-strong) 90%,transparent);
+    z-index:0;
+  }
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;position:relative;z-index:1}
+  .step{
+    background:linear-gradient(180deg, rgba(19,39,66,.5), rgba(12,26,46,.3));
+    border:1px solid var(--rule);
+    padding:40px 32px;position:relative;
+    backdrop-filter:blur(4px);
+    transition:all .4s cubic-bezier(.2,.7,.3,1);
+  }
+  .step:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+  .step-no-wrap{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+  .step-no{
+    width:64px;height:64px;border:1px solid var(--gold);border-radius:50%;
+    display:grid;place-items:center;color:var(--gold);
+    font-family:'Playfair Display',serif;font-style:italic;font-size:28px;
+    background:var(--navy-0);position:relative;
+  }
+  .step-no::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(201,169,97,.3)}
+  .step-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted)}
+  .step-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;line-height:1.15;letter-spacing:-.01em;margin-bottom:18px}
+  .step-body{font-size:14.5px;line-height:1.65;color:var(--ink-muted);margin-bottom:24px}
+  .step-meta{display:flex;gap:24px;padding-top:20px;border-top:1px solid var(--rule);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted)}
+  .step-meta b{color:var(--gold);font-weight:500}
+
+  /* ───── Cases ───── */
+  .cases-head{display:grid;grid-template-columns: 1fr auto;gap:48px;align-items:end;margin-bottom:72px}
+  .cases-counters{display:flex;gap:48px}
+  .counter .k{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px}
+  .counter .v{font-family:'Playfair Display',serif;font-style:italic;font-size:44px;color:var(--gold);font-weight:400;line-height:1}
+
+  .case-row{
+    display:grid;grid-template-columns: 80px 1.3fr 1fr 160px;gap:48px;
+    padding:40px 0;border-bottom:1px solid var(--rule);
+    align-items:center;transition:background .3s;cursor:pointer;
+    position:relative;
+  }
+  .case-row::before{
+    content:"";position:absolute;left:-24px;top:0;bottom:0;width:2px;
+    background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .4s;
+  }
+  .case-row:hover::before{transform:scaleY(1)}
+  .case-row:hover{background:linear-gradient(90deg, rgba(29,53,88,.25), transparent 70%)}
+  .case-n{font-family:'Playfair Display',serif;font-style:italic;font-size:48px;color:var(--gold);font-weight:400;line-height:1;letter-spacing:-.02em}
+  .case-main .loc{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:12px}
+  .case-main .q{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2vw,30px);line-height:1.25;color:var(--bone);margin-bottom:12px}
+  .case-main .by{font-size:12px;color:var(--ink-muted);letter-spacing:.06em}
+  .case-story{font-size:13.5px;line-height:1.65;color:var(--ink-muted)}
+  .case-amount{text-align:right}
+  .case-amount .k{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px}
+  .case-amount .v{font-family:'Playfair Display',serif;font-style:italic;font-size:40px;color:var(--gold);font-weight:400;line-height:1;letter-spacing:-.02em}
+  .case-amount .sub{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted);margin-top:8px}
+
+  /* ───── Eligibility widget ───── */
+  .elig-wrap{
+    padding:120px 0;position:relative;
+    background:
+      radial-gradient(ellipse at center, rgba(29,53,88,.4), transparent 60%);
+  }
+  .elig-card{
+    max-width:760px;margin:0 auto;
+    background:linear-gradient(180deg, rgba(19,39,66,.85), rgba(7,16,29,.95));
+    border:1px solid var(--rule-strong);
+    padding:56px 56px 48px;
+    position:relative;
+    box-shadow: 0 40px 120px rgba(0,0,0,.4);
+  }
+  .elig-card::before,.elig-card::after{
+    content:"";position:absolute;width:20px;height:20px;border:1px solid var(--gold);
+  }
+  .elig-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .elig-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+
+  .elig-kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;text-align:center}
+  .elig-title{font-family:'Playfair Display',serif;font-weight:400;font-size:40px;line-height:1.1;text-align:center;margin-bottom:8px}
+  .elig-title em{font-style:italic;color:var(--gold)}
+  .elig-sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:var(--gold-soft);text-align:center;margin-bottom:40px}
+
+  .elig-q{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:20px;text-align:center;min-height:60px}
+  .elig-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+  .elig-opt{
+    background:transparent;border:1px solid var(--rule-strong);color:var(--bone);
+    padding:20px 24px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:14px;
+    transition:all .2s;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  .elig-opt:hover{border-color:var(--gold);background:rgba(201,169,97,.06);color:var(--gold)}
+  .elig-opt span.arrow{opacity:.4;transition:all .2s}
+  .elig-opt:hover .arrow{opacity:1;transform:translateX(4px)}
+  .elig-progress{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+  .pdot{width:32px;height:2px;background:var(--rule);transition:all .3s}
+  .pdot.active{background:var(--gold)}
+  .pdot.done{background:var(--gold-soft)}
+
+  .elig-result{text-align:center}
+  .elig-result .pct-big{
+    font-family:'Playfair Display',serif;font-size:120px;font-weight:400;font-style:italic;
+    color:var(--gold);letter-spacing:-.04em;line-height:1;margin-bottom:16px;
+  }
+  .elig-result .rlabel{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--bone);margin-bottom:28px;line-height:1.4}
+  .elig-result .rbody{font-size:14px;color:var(--ink-muted);max-width:480px;margin:0 auto 32px;line-height:1.65}
+  .hidden{display:none !important}
+
+  /* ───── Footer CTA ───── */
+  .footer-cta{padding:140px 0 80px;text-align:center;position:relative;overflow:hidden}
+  .footer-cta::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:1px;height:60px;background:var(--gold);
+  }
+  .fct-kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;margin-top:88px}
+  .fct-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(48px,7vw,108px);line-height:1;letter-spacing:-.025em;margin-bottom:32px}
+  .fct-title em{font-style:italic;color:var(--gold)}
+  .fct-sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--gold-soft);max-width:520px;margin:0 auto 40px;line-height:1.45}
+
+  footer{border-top:1px solid var(--rule);padding:40px 0;font-size:11px;color:var(--ink-muted);letter-spacing:.15em;text-transform:uppercase}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .foot-row a{color:var(--ink-muted);text-decoration:none}
+  .foot-row a:hover{color:var(--gold)}
+
+  /* animations */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}.reveal.d5{transition-delay:.6s}
+
+  /* constellation animation */
+  @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+  @keyframes drawLine{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+
+  /* ───── Responsive ───── */
+  @media (max-width: 900px){
+    .container{padding:0 20px}
+    .nav{display:none}
+    .hamburger{display:block}
+    .cta.top{display:none}
+    .hero{padding:48px 0 72px;min-height:auto}
+    .hero-stats{position:relative;right:auto;bottom:auto;width:100%;padding:28px 0 0;margin-top:48px;border-left:none;border-top:1px solid var(--rule-strong)}
+    .stat-big{font-size:88px}
+    .marker{display:none}
+    .section{padding:80px 0}
+    .section-head{margin-bottom:48px}
+    .steps{grid-template-columns:1fr;gap:24px}
+    .steps-line{display:none}
+    .cases-head{grid-template-columns:1fr;gap:32px;align-items:start}
+    .cases-counters{flex-wrap:wrap;gap:32px}
+    .counter .v{font-size:36px}
+    .case-row{grid-template-columns:50px 1fr;gap:16px 20px;padding:28px 0}
+    .case-main{grid-column:2}
+    .case-story{grid-column:2;margin-top:0}
+    .case-amount{grid-column:1 / -1;text-align:left;margin-top:12px;padding-top:16px;border-top:1px dashed var(--rule);display:flex;align-items:baseline;gap:16px}
+    .case-amount .k{margin-bottom:0}
+    .case-amount .v{font-size:32px}
+    .case-amount .sub{margin-top:0;margin-left:auto}
+    .elig-wrap{padding:72px 0}
+    .elig-card{padding:36px 24px}
+    .elig-title{font-size:30px}
+    .elig-options{grid-template-columns:1fr}
+    .elig-result .pct-big{font-size:88px}
+    .footer-cta{padding:80px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Chrome -->
+<header class="chrome">
+  <div class="container chrome-inner">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div class="brand-txt">Kléro<small>Généalogie successorale</small></div>
+    </div>
+    <nav class="nav">
+      <a href="#process">La méthode</a>
+      <a href="#cases">Dossiers</a>
+      <a href="#eligibility">Éligibilité</a>
+      <a href="#faq">FAQ</a>
+      <button class="cta top">Nous contacter</button>
+    </nav>
+    <button class="hamburger" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg class="constellation" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="star-glow">
+          <stop offset="0%" stop-color="#c9a961" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#c9a961" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur"><feGaussianBlur stdDeviation="2"/></filter>
+      </defs>
+      <!-- Constellation lines -->
+      <g stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.35">
+        <line x1="180" y1="140" x2="340" y2="200"/>
+        <line x1="340" y1="200" x2="490" y2="150"/>
+        <line x1="490" y1="150" x2="620" y2="260"/>
+        <line x1="620" y1="260" x2="780" y2="220"/>
+        <line x1="780" y1="220" x2="940" y2="320"/>
+        <line x1="940" y1="320" x2="1120" y2="280"/>
+        <line x1="1120" y1="280" x2="1260" y2="380"/>
+        <line x1="1260" y1="380" x2="1420" y2="340"/>
+
+        <line x1="340" y1="200" x2="420" y2="380"/>
+        <line x1="420" y1="380" x2="580" y2="480"/>
+        <line x1="580" y1="480" x2="720" y2="540"/>
+        <line x1="720" y1="540" x2="900" y2="620"/>
+        <line x1="900" y1="620" x2="1080" y2="560"/>
+        <line x1="1080" y1="560" x2="1260" y2="620"/>
+
+        <line x1="620" y1="260" x2="580" y2="480"/>
+        <line x1="780" y1="220" x2="720" y2="540"/>
+        <line x1="940" y1="320" x2="900" y2="620"/>
+
+        <line x1="260" y1="480" x2="420" y2="380"/>
+        <line x1="260" y1="480" x2="340" y2="680"/>
+        <line x1="340" y1="680" x2="520" y2="740"/>
+        <line x1="520" y1="740" x2="700" y2="780"/>
+        <line x1="700" y1="780" x2="900" y2="620"/>
+      </g>
+
+      <!-- Stars -->
+      <g>
+        <circle cx="180" cy="140" r="2.5" fill="#c9a961"><animate attributeName="opacity" values=".3;1;.3" dur="4s" repeatCount="indefinite"/></circle>
+        <circle cx="340" cy="200" r="3" fill="#efe7d3"><animate attributeName="opacity" values=".5;1;.5" dur="3.2s" repeatCount="indefinite"/></circle>
+        <circle cx="490" cy="150" r="2" fill="#c9a961"><animate attributeName="opacity" values=".4;1;.4" dur="5s" repeatCount="indefinite"/></circle>
+        <circle cx="620" cy="260" r="3.5" fill="#efe7d3"><animate attributeName="opacity" values=".6;1;.6" dur="4.6s" repeatCount="indefinite"/></circle>
+        <circle cx="780" cy="220" r="2.2" fill="#c9a961"><animate attributeName="opacity" values=".4;1;.4" dur="3.8s" repeatCount="indefinite"/></circle>
+        <circle cx="940" cy="320" r="3" fill="#efe7d3"><animate attributeName="opacity" values=".5;1;.5" dur="4.2s" repeatCount="indefinite"/></circle>
+        <circle cx="1120" cy="280" r="2" fill="#c9a961"/>
+        <circle cx="1260" cy="380" r="3.5" fill="#efe7d3"><animate attributeName="opacity" values=".6;1;.6" dur="5.4s" repeatCount="indefinite"/></circle>
+        <circle cx="1420" cy="340" r="2.5" fill="#c9a961"/>
+
+        <circle cx="420" cy="380" r="2.5" fill="#efe7d3"><animate attributeName="opacity" values=".4;1;.4" dur="4.4s" repeatCount="indefinite"/></circle>
+        <circle cx="580" cy="480" r="2" fill="#c9a961"/>
+        <circle cx="720" cy="540" r="3" fill="#efe7d3"><animate attributeName="opacity" values=".5;1;.5" dur="3.6s" repeatCount="indefinite"/></circle>
+        <circle cx="900" cy="620" r="4" fill="#c9a961"><animate attributeName="r" values="4;5;4" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;1;.7" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="1080" cy="560" r="2.2" fill="#efe7d3"/>
+        <circle cx="1260" cy="620" r="2.5" fill="#c9a961"><animate attributeName="opacity" values=".4;1;.4" dur="4.8s" repeatCount="indefinite"/></circle>
+
+        <circle cx="260" cy="480" r="2.5" fill="#efe7d3"><animate attributeName="opacity" values=".5;1;.5" dur="3.4s" repeatCount="indefinite"/></circle>
+        <circle cx="340" cy="680" r="2" fill="#c9a961"/>
+        <circle cx="520" cy="740" r="3" fill="#efe7d3"><animate attributeName="opacity" values=".5;1;.5" dur="4.1s" repeatCount="indefinite"/></circle>
+        <circle cx="700" cy="780" r="2.5" fill="#c9a961"/>
+
+        <!-- stray stars -->
+        <circle cx="120" cy="320" r="1.5" fill="#efe7d3" opacity=".6"/>
+        <circle cx="80" cy="560" r="1" fill="#c9a961" opacity=".5"/>
+        <circle cx="1500" cy="180" r="1.2" fill="#efe7d3" opacity=".7"/>
+        <circle cx="1480" cy="640" r="1.5" fill="#c9a961" opacity=".6"><animate attributeName="opacity" values=".2;.8;.2" dur="5s" repeatCount="indefinite"/></circle>
+      </g>
+
+      <!-- "you" node - highlighted -->
+      <g transform="translate(900,620)">
+        <circle r="20" fill="url(#star-glow)" opacity="0.5"/>
+        <circle r="12" fill="url(#star-glow)" opacity="0.8"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-inner container">
+    <div style="max-width:780px">
+      <div class="hero-meta reveal">Cabinet de généalogie successorale · Paris</div>
+      <h1 class="hero-title reveal d1">
+        Ce que votre famille<br>
+        a <span class="accent"><em>oublié.</em></span><br>
+        Nous le <em>retrouvons.</em>
+      </h1>
+      <p class="hero-lede reveal d2">
+        Sept familles françaises sur cent ignorent l'existence d'un héritage qui leur revient —
+        compte bancaire dormant, parcelle oubliée, legs non réclamé. Nous remontons le fil.
+      </p>
+      <div class="hero-actions reveal d3">
+        <button class="btn-primary">Vérifier mon éligibilité →</button>
+        <button class="btn-ghost">J'ai été contacté</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- markers -->
+  <div class="marker" style="top:140px;left:50%">Acte de décès, 1987</div>
+  <div class="marker" style="top:320px;left:12%">Archives départementales</div>
+  <div class="marker" style="bottom:180px;right:8%">Vous êtes ici</div>
+
+  <!-- floating stat -->
+  <div class="hero-stats reveal d4">
+    <div class="stat-kicker">Étude INSEE · 2025</div>
+    <div class="stat-big">7<span class="pct">%</span></div>
+    <div class="stat-sub">des Français ont un héritage non transmis — souvent sans le savoir.</div>
+    <div class="stat-ticks">
+      <span>— 4,8 M de personnes</span>
+      <span>· 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker reveal">— Notre méthode · trois temps</div>
+      <h2 class="section-title reveal d1">
+        De la donnée dormante à <em>l'héritier retrouvé.</em>
+      </h2>
+      <p class="reveal d2" style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--gold-soft);max-width:620px">
+        Trois étapes, pas une de plus. Encadrées par un notaire, rigoureusement confidentielles,
+        sans aucun frais si aucun actif n'est retrouvé.
+      </p>
+    </div>
+
+    <div class="steps-wrap">
+      <div class="steps-line"></div>
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step-no-wrap">
+            <div class="step-no">I</div>
+            <div class="step-tag">Identification</div>
+          </div>
+          <h3 class="step-title">Nous identifions les successions dormantes.</h3>
+          <p class="step-body">
+            Notre moteur de recherche croise les bases bancaires, notariales et d'état civil
+            pour repérer les successions où une partie de l'héritage n'a jamais été transmise.
+          </p>
+          <div class="step-meta">
+            <span>Bases consultées · <b>47</b></span>
+            <span>Précision · <b>99,4 %</b></span>
+          </div>
+        </article>
+
+        <article class="step reveal d1">
+          <div class="step-no-wrap">
+            <div class="step-no">II</div>
+            <div class="step-tag">Investigation</div>
+          </div>
+          <h3 class="step-title">Notre équipe constitue votre dossier.</h3>
+          <p class="step-body">
+            Généalogistes diplômés et juristes en droit des successions, supervisés par un notaire.
+            Collecte du mandat, recherche d'actifs, reconstitution de la filiation — tout en votre nom.
+          </p>
+          <div class="step-meta">
+            <span>Experts · <b>28</b></span>
+            <span>Durée moyenne · <b>6 mois</b></span>
+          </div>
+        </article>
+
+        <article class="step reveal d2">
+          <div class="step-no-wrap">
+            <div class="step-no">III</div>
+            <div class="step-tag">Restitution</div>
+          </div>
+          <h3 class="step-title">Nous vous restituons ce qui vous revient.</h3>
+          <p class="step-body">
+            Versement supervisé par notaire, conforme aux règles dévolutives.
+            Aucun frais d'avance, aucune commission si rien n'est retrouvé — c'est notre engagement.
+          </p>
+          <div class="step-meta">
+            <span>Sans résultat · <b>0 €</b></span>
+            <span>Contrôle · <b>Notarial</b></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cases -->
+<section class="section" id="cases" style="padding-top:40px">
+  <div class="container">
+    <div class="cases-head">
+      <div>
+        <div class="section-kicker reveal">— Dossiers Kléro · Archives publiques</div>
+        <h2 class="section-title reveal d1">Des histoires<br>qui <em>finissent bien.</em></h2>
+      </div>
+      <div class="cases-counters reveal d2">
+        <div class="counter"><div class="k">Actifs restitués</div><div class="v">47,2 M€</div></div>
+        <div class="counter"><div class="k">Familles réunies</div><div class="v">2 184</div></div>
+        <div class="counter"><div class="k">Depuis</div><div class="v">1984</div></div>
+      </div>
+    </div>
+
+    <div>
+      <article class="case-row reveal">
+        <div class="case-n">№ 04.118</div>
+        <div class="case-main">
+          <div class="loc">Lyon · Rhône · Mars 2025</div>
+          <div class="q">Je n'avais jamais entendu parler de cette grand-tante.</div>
+          <div class="by">— Mme Lefèvre, 58 ans, institutrice</div>
+        </div>
+        <div class="case-story">
+          Succession ouverte en 1997 jamais close. Livret d'épargne, appartement XV<sup>e</sup>,
+          collection de lettres de la guerre. 4 branches d'héritiers localisées en 7 mois.
+        </div>
+        <div class="case-amount">
+          <div class="k">Restitué</div>
+          <div class="v">184 200 €</div>
+          <div class="sub">4 héritiers · 7 mois</div>
+        </div>
+      </article>
+
+      <article class="case-row reveal">
+        <div class="case-n">№ 04.203</div>
+        <div class="case-main">
+          <div class="loc">Bordeaux · Gironde · Sept. 2025</div>
+          <div class="q">Un simple appel. Je pensais à une arnaque.</div>
+          <div class="by">— M. &amp; Mme Caron, artisans</div>
+        </div>
+        <div class="case-story">
+          Cousin germain décédé célibataire en 2018. Succession dormante répartie entre trois
+          banques. Filiation reconstituée sur cinq générations.
+        </div>
+        <div class="case-amount">
+          <div class="k">Restitué</div>
+          <div class="v">72 400 €</div>
+          <div class="sub">2 héritiers · 5 mois</div>
+        </div>
+      </article>
+
+      <article class="case-row reveal">
+        <div class="case-n">№ 04.271</div>
+        <div class="case-main">
+          <div class="loc">Marseille · Bouches-du-Rhône · Févr. 2026</div>
+          <div class="q">On nous avait dit que c'était perdu.</div>
+          <div class="by">— Famille Moretti, descendants italiens</div>
+        </div>
+        <div class="case-story">
+          Propriété rurale inscrite sous patronyme francisé, échappée à trois notaires successifs.
+          340 actes, 12 archives départementales, 2 recherches internationales.
+        </div>
+        <div class="case-amount">
+          <div class="k">Restitué</div>
+          <div class="v">312 800 €</div>
+          <div class="sub">7 héritiers · 11 mois</div>
+        </div>
+      </article>
+
+      <article class="case-row reveal">
+        <div class="case-n">№ 04.289</div>
+        <div class="case-main">
+          <div class="loc">Strasbourg · Bas-Rhin · Avr. 2026</div>
+          <div class="q">Ma mère en parlait comme d'un mystère.</div>
+          <div class="by">— M. Weber, médecin</div>
+        </div>
+        <div class="case-story">
+          Livrets d'épargne alsaciens ouverts en 1952, transférés sans adresse connue après 1968.
+          Identification par recoupement de registres ecclésiastiques.
+        </div>
+        <div class="case-amount">
+          <div class="k">Restitué</div>
+          <div class="v">58 700 €</div>
+          <div class="sub">1 héritier · 4 mois</div>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center;margin-top:48px">
+      <button class="btn-ghost">Consulter l'ensemble des dossiers publics →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Eligibility widget -->
+<section class="elig-wrap" id="eligibility">
+  <div class="container">
+    <div class="elig-card reveal">
+      <div class="elig-kicker">— Diagnostic confidentiel · 30 secondes</div>
+      <h3 class="elig-title">Êtes-vous <em>concerné</em> ?</h3>
+      <p class="elig-sub">Trois questions, aucune donnée enregistrée.</p>
+
+      <div class="elig-progress">
+        <div class="pdot active" data-i="0"></div>
+        <div class="pdot" data-i="1"></div>
+        <div class="pdot" data-i="2"></div>
+      </div>
+
+      <div id="elig-body">
+        <div class="elig-q" id="elig-q">Un membre de votre famille élargie est-il décédé ces 30 dernières années&nbsp;?</div>
+        <div class="elig-options" id="elig-opts">
+          <button class="elig-opt" data-score="2">Oui, probablement <span class="arrow">→</span></button>
+          <button class="elig-opt" data-score="1">Je ne suis pas sûr <span class="arrow">→</span></button>
+          <button class="elig-opt" data-score="2">Plusieurs, oui <span class="arrow">→</span></button>
+          <button class="elig-opt" data-score="0">Non, aucun <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+      <div class="elig-result hidden" id="elig-result">
+        <div class="pct-big" id="elig-pct">—</div>
+        <div class="rlabel" id="elig-label">Probabilité estimée qu'un héritage vous concerne.</div>
+        <div class="rbody" id="elig-body-msg"></div>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary">Ouvrir mon dossier gratuitement →</button>
+          <button class="btn-ghost" onclick="restartElig()">Refaire le test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<section class="footer-cta">
+  <div class="container">
+    <div class="fct-kicker reveal">— Cabinet Kléro · Depuis 1984</div>
+    <h2 class="fct-title reveal d1">
+      L'histoire de votre famille<br>
+      <em>n'est pas encore finie.</em>
+    </h2>
+    <p class="fct-sub reveal d2">
+      Une prise de contact simple, confidentielle, sans engagement. Nous vous répondons sous 48 heures ouvrées.
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap" class="reveal d3">
+      <button class="btn-primary">Ouvrir un dossier gratuitement →</button>
+      <button class="btn-ghost">01 73 71 13 63</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-row">
+    <div>© MMXXVI · Klero Généalogie · 295 Rue Saint-Jacques, Paris V<sup>e</sup></div>
+    <div><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a> · Contrôle notarial M<sup>e</sup> Rambert</div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } });
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Eligibility widget
+  const questions = [
+    {
+      q: "Un membre de votre famille élargie est-il décédé ces 30 dernières années&nbsp;?",
+      opts: [
+        {t:"Oui, probablement", s:2},
+        {t:"Je ne suis pas sûr", s:1},
+        {t:"Plusieurs, oui", s:3},
+        {t:"Non, aucun", s:0},
+      ]
+    },
+    {
+      q: "Y a-t-il eu des branches familiales perdues de vue&nbsp;— cousins, grands-oncles, émigrations&nbsp;?",
+      opts: [
+        {t:"Oui, c'est le cas", s:3},
+        {t:"Possiblement", s:2},
+        {t:"Pas à ma connaissance", s:0},
+        {t:"Famille très dispersée", s:3},
+      ]
+    },
+    {
+      q: "Avez-vous déjà eu le sentiment qu'une succession n'avait pas été entièrement réglée&nbsp;?",
+      opts: [
+        {t:"Oui, un doute persiste", s:3},
+        {t:"Non, tout semblait clair", s:0},
+        {t:"Je l'ignore", s:1},
+        {t:"Une zone grise, oui", s:2},
+      ]
+    }
+  ];
+  let step = 0; let score = 0;
+  const qEl = document.getElementById('elig-q');
+  const optsEl = document.getElementById('elig-opts');
+  const resultEl = document.getElementById('elig-result');
+  const bodyEl = document.getElementById('elig-body');
+  const pctEl = document.getElementById('elig-pct');
+  const labelEl = document.getElementById('elig-label');
+  const bodyMsgEl = document.getElementById('elig-body-msg');
+
+  function renderQ(){
+    const Q = questions[step];
+    qEl.innerHTML = Q.q;
+    optsEl.innerHTML = Q.opts.map(o=>`<button class="elig-opt" data-score="${o.s}">${o.t} <span class="arrow">→</span></button>`).join('');
+    optsEl.querySelectorAll('.elig-opt').forEach(b=>{
+      b.addEventListener('click',()=>{
+        score += parseInt(b.dataset.score);
+        document.querySelectorAll('.pdot')[step].classList.remove('active');
+        document.querySelectorAll('.pdot')[step].classList.add('done');
+        step++;
+        if(step < questions.length){
+          document.querySelectorAll('.pdot')[step].classList.add('active');
+          bodyEl.style.opacity = 0;
+          setTimeout(()=>{renderQ();bodyEl.style.opacity=1},200);
+        } else {
+          showResult();
+        }
+      });
+    });
+  }
+
+  function showResult(){
+    bodyEl.classList.add('hidden');
+    resultEl.classList.remove('hidden');
+    // score 0..9 → prob 7..68
+    const pct = Math.min(82, 7 + score*8);
+    let n = 0;
+    const target = pct;
+    const animate = ()=>{
+      if(n < target){ n = Math.min(target, n+2); pctEl.textContent = n + '%'; requestAnimationFrame(animate);}
+      else pctEl.textContent = target + '%';
+    };
+    animate();
+
+    let msg;
+    if(pct < 25){ labelEl.textContent = "Votre profil présente un risque modéré."; msg = "Un doute subsiste cependant. Une vérification gratuite de vos ascendances prend 10 minutes et peut révéler l'inattendu."; }
+    else if(pct < 55){ labelEl.textContent = "Probabilité significative qu'un héritage vous concerne."; msg = "Votre configuration familiale correspond à plus de 60% de nos dossiers résolus. Nous vous recommandons un diagnostic approfondi."; }
+    else { labelEl.textContent = "Forte probabilité — un dossier vous concerne."; msg = "Votre profil présente plusieurs signaux typiques de nos dossiers aboutis. Nous vous conseillons vivement d'ouvrir un dossier gratuitement."; }
+    bodyMsgEl.textContent = msg;
+  }
+
+  function restartElig(){
+    step = 0; score = 0;
+    document.querySelectorAll('.pdot').forEach((d,i)=>{d.classList.remove('active','done');if(i===0)d.classList.add('active')});
+    resultEl.classList.add('hidden');
+    bodyEl.classList.remove('hidden');
+    bodyEl.style.opacity = 1;
+    renderQ();
+  }
+
+  bodyEl.style.transition = 'opacity .2s';
+  renderQ();
+</script>
+
+</body>
+</html>
