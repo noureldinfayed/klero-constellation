@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Instrument_Serif, Manrope } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
-import LenisProvider from '@/components/ui/LenisProvider'
 import './globals.css'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
   display: 'swap',
+  preload: true,
 })
 
 const instrument = Instrument_Serif({
@@ -18,13 +18,15 @@ const instrument = Instrument_Serif({
   style: ['normal', 'italic'],
   variable: '--font-instrument',
   display: 'swap',
+  preload: true,
 })
 
 const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-manrope',
   display: 'swap',
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -61,7 +63,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-navy-0 text-bone font-sans">
         <div className="bg-layer" aria-hidden="true" />
-        <LenisProvider>{children}</LenisProvider>
+        {children}
         <Analytics />
       </body>
     </html>

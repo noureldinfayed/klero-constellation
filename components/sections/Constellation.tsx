@@ -11,12 +11,8 @@ export default function Constellation() {
           <stop offset="0%" stopColor="#c9a961" stopOpacity="1" />
           <stop offset="100%" stopColor="#c9a961" stopOpacity="0" />
         </radialGradient>
-        <filter id="blur">
-          <feGaussianBlur stdDeviation="2" />
-        </filter>
       </defs>
 
-      {/* Constellation lines */}
       <g stroke="#c9a961" strokeWidth="0.6" fill="none" opacity="0.35">
         <line x1="180" y1="140" x2="340" y2="200" />
         <line x1="340" y1="200" x2="490" y2="150" />
@@ -45,66 +41,35 @@ export default function Constellation() {
         <line x1="700" y1="780" x2="900" y2="620" />
       </g>
 
-      {/* Stars */}
       <g>
-        <circle cx="180" cy="140" r="2.5" fill="#c9a961">
-          <animate attributeName="opacity" values=".3;1;.3" dur="4s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="340" cy="200" r="3" fill="#efe7d3">
-          <animate attributeName="opacity" values=".5;1;.5" dur="3.2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="490" cy="150" r="2" fill="#c9a961">
-          <animate attributeName="opacity" values=".4;1;.4" dur="5s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="620" cy="260" r="3.5" fill="#efe7d3">
-          <animate attributeName="opacity" values=".6;1;.6" dur="4.6s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="780" cy="220" r="2.2" fill="#c9a961">
-          <animate attributeName="opacity" values=".4;1;.4" dur="3.8s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="940" cy="320" r="3" fill="#efe7d3">
-          <animate attributeName="opacity" values=".5;1;.5" dur="4.2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="1120" cy="280" r="2" fill="#c9a961" />
-        <circle cx="1260" cy="380" r="3.5" fill="#efe7d3">
-          <animate attributeName="opacity" values=".6;1;.6" dur="5.4s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="1420" cy="340" r="2.5" fill="#c9a961" />
+        <circle className="star-twinkle" cx="180" cy="140" r="2.5" fill="#c9a961" />
+        <circle className="star-twinkle" cx="340" cy="200" r="3" fill="#efe7d3" style={{ animationDuration: '3.2s' }} />
+        <circle className="star-twinkle" cx="490" cy="150" r="2" fill="#c9a961" style={{ animationDuration: '5s' }} />
+        <circle className="star-twinkle" cx="620" cy="260" r="3.5" fill="#efe7d3" style={{ animationDuration: '4.6s' }} />
+        <circle className="star-twinkle" cx="780" cy="220" r="2.2" fill="#c9a961" style={{ animationDuration: '3.8s' }} />
+        <circle className="star-twinkle" cx="940" cy="320" r="3" fill="#efe7d3" style={{ animationDuration: '4.2s' }} />
+        <circle cx="1120" cy="280" r="2" fill="#c9a961" opacity="0.7" />
+        <circle className="star-twinkle" cx="1260" cy="380" r="3.5" fill="#efe7d3" style={{ animationDuration: '5.4s' }} />
+        <circle cx="1420" cy="340" r="2.5" fill="#c9a961" opacity="0.7" />
 
-        <circle cx="420" cy="380" r="2.5" fill="#efe7d3">
-          <animate attributeName="opacity" values=".4;1;.4" dur="4.4s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="580" cy="480" r="2" fill="#c9a961" />
-        <circle cx="720" cy="540" r="3" fill="#efe7d3">
-          <animate attributeName="opacity" values=".5;1;.5" dur="3.6s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="900" cy="620" r="4" fill="#c9a961">
-          <animate attributeName="r" values="4;5;4" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values=".7;1;.7" dur="3s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="1080" cy="560" r="2.2" fill="#efe7d3" />
-        <circle cx="1260" cy="620" r="2.5" fill="#c9a961">
-          <animate attributeName="opacity" values=".4;1;.4" dur="4.8s" repeatCount="indefinite" />
-        </circle>
+        <circle className="star-twinkle" cx="420" cy="380" r="2.5" fill="#efe7d3" style={{ animationDuration: '4.4s' }} />
+        <circle cx="580" cy="480" r="2" fill="#c9a961" opacity="0.7" />
+        <circle className="star-twinkle" cx="720" cy="540" r="3" fill="#efe7d3" style={{ animationDuration: '3.6s' }} />
+        <circle cx="900" cy="620" r="4" fill="#c9a961" opacity="0.9" />
+        <circle cx="1080" cy="560" r="2.2" fill="#efe7d3" opacity="0.7" />
+        <circle className="star-twinkle" cx="1260" cy="620" r="2.5" fill="#c9a961" style={{ animationDuration: '4.8s' }} />
 
-        <circle cx="260" cy="480" r="2.5" fill="#efe7d3">
-          <animate attributeName="opacity" values=".5;1;.5" dur="3.4s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="340" cy="680" r="2" fill="#c9a961" />
-        <circle cx="520" cy="740" r="3" fill="#efe7d3">
-          <animate attributeName="opacity" values=".5;1;.5" dur="4.1s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="700" cy="780" r="2.5" fill="#c9a961" />
+        <circle className="star-twinkle" cx="260" cy="480" r="2.5" fill="#efe7d3" style={{ animationDuration: '3.4s' }} />
+        <circle cx="340" cy="680" r="2" fill="#c9a961" opacity="0.7" />
+        <circle className="star-twinkle" cx="520" cy="740" r="3" fill="#efe7d3" style={{ animationDuration: '4.1s' }} />
+        <circle cx="700" cy="780" r="2.5" fill="#c9a961" opacity="0.7" />
 
-        <circle cx="120" cy="320" r="1.5" fill="#efe7d3" opacity=".6" />
-        <circle cx="80" cy="560" r="1" fill="#c9a961" opacity=".5" />
-        <circle cx="1500" cy="180" r="1.2" fill="#efe7d3" opacity=".7" />
-        <circle cx="1480" cy="640" r="1.5" fill="#c9a961" opacity=".6">
-          <animate attributeName="opacity" values=".2;.8;.2" dur="5s" repeatCount="indefinite" />
-        </circle>
+        <circle cx="120" cy="320" r="1.5" fill="#efe7d3" opacity="0.6" />
+        <circle cx="80" cy="560" r="1" fill="#c9a961" opacity="0.5" />
+        <circle cx="1500" cy="180" r="1.2" fill="#efe7d3" opacity="0.7" />
+        <circle cx="1480" cy="640" r="1.5" fill="#c9a961" opacity="0.6" />
       </g>
 
-      {/* "You are here" node */}
       <g transform="translate(900,620)">
         <circle r="20" fill="url(#star-glow)" opacity="0.5" />
         <circle r="12" fill="url(#star-glow)" opacity="0.8" />

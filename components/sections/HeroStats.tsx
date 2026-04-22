@@ -1,11 +1,6 @@
-import Reveal from '@/components/ui/Reveal'
-
 export default function HeroStats() {
   return (
-    <Reveal
-      delay={4}
-      className="hero-stats relative z-[2] w-full md:absolute md:right-8 md:bottom-0 md:w-[340px] pt-7 md:px-7 border-t border-rule-strong md:border-t-0 md:border-l md:border-rule-strong mt-12 md:mt-0"
-    >
+    <aside className="relative z-[2] w-full md:absolute md:right-8 md:bottom-0 md:w-[340px] pt-7 md:px-7 border-t border-rule-strong md:border-t-0 md:border-l md:border-rule-strong mt-12 md:mt-0">
       <div className="text-[10px] tracking-[.25em] uppercase text-gold mb-[10px]">
         Étude INSEE · 2025
       </div>
@@ -20,6 +15,6 @@ export default function HeroStats() {
         <span>— 4,8 M de personnes</span>
         <span>· 2026</span>
       </div>
-    </Reveal>
+    </aside>
   )
 }

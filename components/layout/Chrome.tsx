@@ -24,6 +24,7 @@ export default function Chrome() {
               width={1022}
               height={313}
               priority
+              sizes="(min-width: 768px) 184px, 164px"
               className="h-[50px] md:h-[56px] w-auto"
             />
             <span className="sr-only">Kléro Généalogie successorale</span>

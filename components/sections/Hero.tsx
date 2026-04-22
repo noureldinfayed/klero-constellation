@@ -1,4 +1,3 @@
-import Reveal from '@/components/ui/Reveal'
 import Constellation from './Constellation'
 import HeroStats from './HeroStats'
 
@@ -47,16 +46,12 @@ export default function Hero() {
 
       <div className="relative z-[2] w-full mx-auto max-w-[1800px] px-5 md:px-8">
         <div className="max-w-[860px]">
-          <Reveal className="flex items-center gap-[14px] font-sans text-[11px] tracking-[.28em] uppercase text-gold mb-6">
+          <div className="flex items-center gap-[14px] font-sans text-[11px] tracking-[.28em] uppercase text-gold mb-6">
             <span aria-hidden="true" className="inline-block w-10 h-px bg-gold" />
             Cabinet de généalogie successorale · Paris
-          </Reveal>
+          </div>
 
-          <Reveal
-            as="h1"
-            delay={1}
-            className="font-serif font-normal leading-[.95] tracking-[-.025em] text-bone mb-6"
-          >
+          <h1 className="font-serif font-normal leading-[.95] tracking-[-.025em] text-bone mb-6">
             <span
               className="block"
               style={{ fontSize: 'clamp(40px, 5.2vw, 88px)', lineHeight: '.95' }}
@@ -80,21 +75,17 @@ export default function Hero() {
               <br />
               Nous le <span className="italic text-gold">retrouvons.</span>
             </span>
-          </Reveal>
+          </h1>
 
-          <Reveal
-            as="p"
-            delay={2}
-            className="font-display italic text-gold-soft max-w-[540px] mb-8"
-          >
+          <p className="font-display italic text-gold-soft max-w-[540px] mb-8">
             <span style={{ fontSize: 'clamp(18px, 1.6vw, 22px)', lineHeight: 1.45 }}>
               Sept familles françaises sur cent ignorent l&apos;existence d&apos;un héritage qui leur
               revient — compte bancaire dormant, parcelle oubliée, legs non réclamé. Nous remontons
               le fil.
             </span>
-          </Reveal>
+          </p>
 
-          <Reveal delay={3} className="flex gap-4 items-center flex-wrap">
+          <div className="flex gap-4 items-center flex-wrap">
             <a
               href="#eligibility"
               className="inline-block no-underline bg-gold text-navy-0 px-8 py-4 font-sans text-[12px] tracking-[.18em] uppercase font-semibold cursor-pointer transition-all duration-[.25s] hover:bg-gold-soft hover:-translate-y-[1px] hover:shadow-[0_10px_40px_rgba(201,169,97,.25)]"
@@ -107,7 +98,7 @@ export default function Hero() {
             >
               J&apos;ai été contacté
             </button>
-          </Reveal>
+          </div>
         </div>
 
         <HeroStats />
